@@ -1,0 +1,26 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Ambil code dari repo
+      - uses: actions/checkout@v3
+
+      # Step 2: Setup Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.4' # tukar ikut versi projek anda
+
+      # Step 3: Install dependencies
+      - run: flutter pub get
+
+      # Step 4: Test projek
+      - run: flutter test
